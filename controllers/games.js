@@ -29,29 +29,26 @@ router.get("/", (req, res) => {
 
 //adding new game into db
 
-router.get("/newGame", (req, res) => {
+router.get("/newgamedb", (req, res) => {
   res.render("./newGame");
 });
 
 router.post("/", upload.single("myImg"), async (req, res, next) => {
   //   console.log(req.file);
   //   console.log(req.body);
-  //   let img = fs.readFileSync(req.file.path);
-  //   let encode_img = img.toString("base64");
+
   let final_img = {
     data: fs.readFileSync(
       path.join(__dirname, "..", "/uploads/", req.file.filename)
     ),
     contentType: req.file.mimetype,
-    // image: new Buffer.alloc(req.file.size, encode_img, "base64"),
   };
   //   console.log(encode_img);
   const obj = {
     name: req.body.name,
+    title: req.body.title,
     desc: req.body.desc,
     img: final_img,
-    // img: new Buffer.from(req.body.img, "base64"),
-    // contentType: req.file.mimetype,
   };
 
   Game.create(obj, (err, Game) => {
@@ -59,11 +56,39 @@ router.post("/", upload.single("myImg"), async (req, res, next) => {
       console.log("Error adding new game" + err.message);
     } else {
       //   console.log(Game.img.Buffer);
-      //   res.contentType(final_img.contentType);
-      //   res.send(final_img.image);
 
       res.redirect("/");
     }
+  });
+});
+
+//going into game details page
+
+router.get("/:id", (req, res) => {
+  Game.findById(req.params.id, (err, gameDets) => {
+    res.render("gameDets", { games: gameDets });
+  });
+});
+
+//delete entry by id
+
+router.delete("/:id", (req, res) => {
+  Game.findByIdAndDelete(req.params.id, (err, data) => {
+    res.redirect("/");
+  });
+});
+
+//edit data
+
+router.get("/:id/edit", (req, res) => {
+  Game.findById(req.params.id, (err, gameDets) => {
+    res.render("edit", { games: gameDets });
+  });
+});
+
+router.put("/:id", (req, res) => {
+  Game.findByIdAndUpdate({ new: true }, (err, updatedGame) => {
+    res.redirect("/:id");
   });
 });
 

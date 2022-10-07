@@ -7,15 +7,17 @@
     <title>Index Page</title>
   </head>
   <body>
-    <h1>Index page</h1>
+    <h1>Gamers WWH</h1>
 
     <ul>
         <% for(let i=0; i<allGames.length;i++) {%>
         <li>
             
-           <%=allGames[i].name%> <img src="data:image/<%=allGames[i].img.contentType%>;base64,<%=allGames[i].img.data.toString('base64')%>">     
+          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <img src="data:image/<%=allGames[i].img.contentType%>;base64,<%=allGames[i].img.data.toString('base64')%>">     
         </li><%}
         %>
 </ul>
+
+<a href="/newgamedb">Add new info to database</a>
   </body>
 </html>

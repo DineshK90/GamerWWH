@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Info Addition</title>
+    <title>Edit Game Info</title>
   </head>
   <body>
-    <h1>Add New Information To Directory</h1>
+    <h1>Edit Info</h1>
 
-    <form action="/" enctype="multipart/form-data" method="POST">
+    <form
+      action="/<%=games.id%>?_overWriteMethod=PUT"
+      enctype="multipart/form-data"
+      method="POST"
+    >
       Game Name: <input type="text" name="name" id="game name" /> <br /><br />
 
       Title:
@@ -24,7 +28,7 @@
       <input type="file" id="myImg" name="myImg" accept="image/*" />
       <br /><br />
 
-      <input type="submit" name="submit" value="Add Game" />
+      <input type="submit" name="submit" value="Add Edited Info" />
     </form>
 
     <a href="/">Cancel and return to home page</a>
