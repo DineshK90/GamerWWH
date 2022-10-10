@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Page</title>
+    <%- include ('../partials/bootstrap.ejs') %> <%-
+    include('../partials/gallery.ejs') %> <%- include ('../partials/head.ejs')
+    %>
   </head>
 
   <body>
@@ -15,13 +18,14 @@
       <% if(games){%>
       <img
         src="data:image/<%=games.myImg.contentType%>;base64,<%=games.myImg.data.toString('base64')%>"
+        height="300"
       />
       <% } %>
     </h2>
-    <h3>
+    <p>
       <br />
       <% if(games) {%> <%= games.desc%> <% } %>
-    </h3>
+    </p>
 
     <br />
 

@@ -7,16 +7,15 @@
     <title>Index Page</title>
     <%- include ('../partials/bootstrap.ejs') %>  
     <%- include ('../partials/gallery.ejs') %>  
-    <h1>Gamer WWH</h1>
-    <h4>Gamer What Where and How</h4>
+    <%- include ('../partials/head.ejs') %>  
   </head>
   
   <body>
    
     
-    <h8>Please create an account to unlock full site functionalities</h8>
+  
 
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-white">
       <div class="container-fluid">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -76,9 +75,7 @@
         <br>
 </ul>
 
-<% if(userDetails){%>
-<a href="/newgamedb">Add new info to database</a> <% } %> 
-  </body>
+
   <br>
   <footer>  <%- include ('../partials/footer.ejs') %> </footer>
 </html>

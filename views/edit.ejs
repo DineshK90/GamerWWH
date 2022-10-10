@@ -5,31 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Game Info</title>
+    <%- include ('../partials/bootstrap.ejs') %> <%-
+    include('../partials/gallery.ejs') %> <%- include ('../partials/head.ejs')
+    %>
   </head>
   <body>
     <h1>Edit Info</h1>
-    <form
-      class="edit"
-      action="/<%=games.id%>?_method=PUT"
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      Game Name: <input type="text" name="name" id="game name" /> <br /><br />
 
-      Title:
-      <input type="text" name="title" id="title" /> <br />
-      <br />
+    <div class="form-group row">
+      <form
+        class="edit"
+        action="/<%=games.id%>?_method=PUT"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        Game Name:
+        <input class="form-control" type="text" name="name" id="game name" />
+        <br /><br />
 
-      Description:
-      <input type="text" name="desc" id="desc" /> <br />
-      <br />
+        Title:
+        <input class="form-control" type="text" name="title" id="title" />
+        <br />
+        <br />
 
-      Image:
-      <input type="file" id="myImg" name="myImg" accept="image/*" />
-      <br /><br />
+        Description: <input class="form-control form-control-lg type="text"
+        name="desc" id="desc" /> <br />
+        <br />
 
-      <input type="submit" name="submit" value="Add Edited Info" />
-    </form>
+        Image:
+        <input type="file" id="myImg" name="myImg" accept="image/*" />
+        <br /><br />
+
+        <input type="submit" name="submit" value="Add Edited Info" />
+      </form>
+    </div>
 
     <a href="/">Cancel and return to home page</a>
   </body>

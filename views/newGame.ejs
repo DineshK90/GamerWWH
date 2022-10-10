@@ -5,28 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Info Addition</title>
+    <%- include ('../partials/bootstrap.ejs') %> <%-
+    include('../partials/gallery.ejs') %>
+      <%- include ('../partials/head.ejs') %> 
   </head>
   <body>
     <h1>Add New Information To Directory</h1>
 
-    <form action="/" enctype="multipart/form-data" method="POST">
-      Game Name: <input type="text" name="name" id="game name" /> <br /><br />
+      <form action="/" enctype="multipart/form-data" method="POST">
+        Game Name:
+        <input class="form-control" type="text" name="name" id="game name" />
+        <br /><br />
 
-      Title:
-      <input type="text" name="title" id="title" /> <br />
-      <br />
+        Title:
+        <input class="form-control" type="text" name="title" id="title" />
+        <br />
+        <br />
 
-      Description:
-      <input type="text" name="desc" id="desc" /> <br />
-      <br />
+        Description:
 
-      Image:
-      <input type="file" id="myImg" name="myImg" accept="image/*" />
-      <br /><br />
+        <input
+          class="form-control form-control-lg"
+          type="text"
+          name="desc"
+          id="lg"
+        />
 
-      <input type="submit" name="submit" value="Add Game" />
-    </form>
+        <br />
+        <br />
 
+        Image:
+        <input type="file" id="myImg" name="myImg" accept="image/*" />
+        <br /><br />
+
+        <input type="submit" name="submit" value="Add Game" />
+      </form>
+    </div>
     <a href="/">Cancel and return to home page</a>
   </body>
 </html>
