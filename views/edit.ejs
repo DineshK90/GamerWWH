@@ -18,6 +18,7 @@
         action="/<%=games.id%>?_method=PUT"
         enctype="multipart/form-data"
         method="POST"
+        autocomplete="on"
       >
         Game Name:
         <input class="form-control" type="text" name="name" id="game name" />
@@ -28,8 +29,11 @@
         <br />
         <br />
 
-        Description: <input class="form-control form-control-lg type="text"
-        name="desc" id="desc" /> <br />
+        Description:
+        <textarea id="freeform" type="article" name="desc" rows="4" cols="180">
+        </textarea>
+        />
+        <br />
         <br />
 
         Image:

@@ -11,10 +11,6 @@
   </head>
   
   <body>
-   
-    
-  
-
     <nav class="navbar navbar-expand-lg bg-white">
       <div class="container-fluid">
         <ul class="navbar-nav">
@@ -50,7 +46,8 @@
     
     <ul>
       <% for(let i=0; i<allGames.length;i++) {%>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+        <div class="row row-cols-md-3 g-4">
           <div class="col">
             <div class="card">
         <li>
@@ -62,10 +59,11 @@
           
           <% } else { %> 
             <img class="card-img-top" src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>">
-           <h5 class="card-title"> <%=allGames[i].name%> </h5>  <br>
-          <p class="card-text"><%=allGames[i].title%> </p> <br> 
+           <h5 class="card-title"> <%=allGames[i].name%> </h5>  
+          <p class="card-text"><%=allGames[i].title%> </p> > 
             <%}%>
           </li>
+          
         </div>
       </div>
       </div>

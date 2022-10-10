@@ -33,7 +33,6 @@ router.get("/", (req, res) => {
     if (error) {
       console.log("Error retrieving data " + error.message);
     } else {
-      console.log(allGames);
       res.render("./index.ejs", {
         userDetails: req.session.currentUser,
         allGames,
