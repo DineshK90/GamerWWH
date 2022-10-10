@@ -5,37 +5,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index Page</title>
+    <%- include ('../partials/bootstrap.ejs') %>  
+    <%- include ('../partials/gallery.ejs') %>  
+    <h1>Gamer WWH</h1>
+    <h4>Gamer What Where and How</h4>
   </head>
   
   <body>
-    <h1>Gamers WWH</h1>
-    <h3> <%if(userDetails){%> Hello <%= (userDetails.username)%> <br><%}%> Welcome to GamerWWH</h3>
-    <nav>
-      <ul>
-        <li><a href="/sessions/newSession">Login</a></li>
-        <br />
-        <li><a href="/sessions/newUser">Register</a></li>
-        <% if(userDetails){%>
+   
+    
+    <h8>Please create an account to unlock full site functionalities</h8>
 
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <% if(userDetails){%><a class="nav-link active" aria-current="page" href="/newgamedb">Add new game info</a><%}%>
+          </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%if(!userDetails){ %>
+        User Panel
+        <% }else{%> Welcome <%=(userDetails.username)%> <%}%>
+      </a>
+    
+      <ul class="dropdown-menu">
+        <li><%if(!userDetails){%><a class="dropdown-item" href="/sessions/newSession">Login</a></li>
+        <br />
+        <li><a class="dropdown-item"  href="/sessions/newUser">Register</a></li>
+        <%}%>
+
+        <% if(userDetails){%>
         <form action="/sessions?_method=DELETE" method="POST">
-          <br />
+          
           <input type="submit" value="Logout" />
         </form>
 
+
         <%}%>
       </ul>
+      </li>
+      </ul>
+    </div>
     </nav>
+
+    
     <ul>
       <% for(let i=0; i<allGames.length;i++) {%>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card">
         <li>
           <% if(userDetails){ %>
-          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <br> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>"> <% } else { %> 
-            <%=allGames[i].name%></a> <br> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>"> 
+         
+          <img class="card-img-top" src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>">
+          <a href="/<%=allGames[i].id%>"> <h5 class="card-title"> <%=allGames[i].name%> </h5> </a> <br>
+          <p class="card-text"><%=allGames[i].title%> </p> <br> 
+          
+          <% } else { %> 
+            <img class="card-img-top" src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>">
+           <h5 class="card-title"> <%=allGames[i].name%> </h5>  <br>
+          <p class="card-text"><%=allGames[i].title%> </p> <br> 
             <%}%>
-        </li><%}
+          </li>
+        </div>
+      </div>
+      </div>
+    
+        <%}
         %>
+        <br>
 </ul>
+
 <% if(userDetails){%>
 <a href="/newgamedb">Add new info to database</a> <% } %> 
   </body>
+  <br>
+  <footer>  <%- include ('../partials/footer.ejs') %> </footer>
 </html>
+
