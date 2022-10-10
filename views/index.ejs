@@ -9,7 +9,7 @@
   
   <body>
     <h1>Gamers WWH</h1>
-    <h3>Welcome <%= (userDetails.username)%> to GamerWWH</h3>
+    <h3> <%if(userDetails){%> Hello <%= (userDetails.username)%> <br><%}%> Welcome to GamerWWH</h3>
     <nav>
       <ul>
         <li><a href="/sessions/newSession">Login</a></li>
@@ -28,12 +28,14 @@
     <ul>
       <% for(let i=0; i<allGames.length;i++) {%>
         <li>
-
-          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>">
+          <% if(userDetails){ %>
+          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <br> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>"> <% } else { %> 
+            <%=allGames[i].name%></a> <br> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>"> 
+            <%}%>
         </li><%}
         %>
 </ul>
-
-<a href="/newgamedb">Add new info to database</a>
+<% if(userDetails){%>
+<a href="/newgamedb">Add new info to database</a> <% } %> 
   </body>
 </html>

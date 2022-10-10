@@ -24,10 +24,9 @@
     </h3>
 
     <br />
-    <% if(games){ %>
-    <a href="/<%=games.id%>/edit">Edit Log</a> <% } %> <br />
 
-    <% if(games){%>
+    <a href="/<%=games.id%>/edit">Edit Log</a> <br />
+
     <form
       style="display: inline"
       action="/<%=games.id %>?_method=DELETE"
@@ -35,7 +34,6 @@
     >
       <input type="submit" value="DELETE" />
     </form>
-    <% } %>
 
     <a href="/">Return to homepage</a>
   </body>
