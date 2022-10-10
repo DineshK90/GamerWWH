@@ -6,14 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index Page</title>
   </head>
+  
   <body>
     <h1>Gamers WWH</h1>
+    <h3>Welcome <%= (userDetails.username)%> to GamerWWH</h3>
+    <nav>
+      <ul>
+        <li><a href="/sessions/newSession">Login</a></li>
+        <br />
+        <li><a href="/sessions/newUser">Register</a></li>
+        <% if(userDetails){%>
 
+        <form action="/sessions?_method=DELETE" method="POST">
+          <br />
+          <input type="submit" value="Logout" />
+        </form>
+
+        <%}%>
+      </ul>
+    </nav>
     <ul>
-        <% for(let i=0; i<allGames.length;i++) {%>
+      <% for(let i=0; i<allGames.length;i++) {%>
         <li>
-            
-          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <img src="data:image/<%=allGames[i].img.contentType%>;base64,<%=allGames[i].img.data.toString('base64')%>">     
+
+          <a href="/<%=allGames[i].id%>"> <%=allGames[i].name%></a> <img src="data:image/<%=allGames[i].myImg.contentType%>;base64,<%=allGames[i].myImg.data.toString('base64')%>">
         </li><%}
         %>
 </ul>

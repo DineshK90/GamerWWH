@@ -3,6 +3,8 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 const app = express();
 
@@ -34,13 +36,24 @@ db.once("open", function () {
 });
 
 const gamesController = require("./controllers/games");
+const sessionController = require("./controllers/sessions.js");
 
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: "somerandomstring",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use("/sessions", sessionController);
 app.use("/", gamesController);
 
 app.listen(PORT, () => console.log("You are connected to port ", PORT));

@@ -3,8 +3,11 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
-
+const User = require("../models/users.js");
 const Game = require("../models/games.js");
+const bcrypt = require("bcrypt");
+
+//storage for uploaded images
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,20 +20,26 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage });
 
-router.get("/", (req, res) => {
-  Game.find({}, (error, allGames) => {
-    if (error) {
-      console.log("Error retrieving data " + error.message);
-    } else {
-      res.render("./index.ejs", { allGames });
-    }
-  });
-});
+//index page route
 
 //adding new game into db
 
 router.get("/newgamedb", (req, res) => {
   res.render("./newGame");
+});
+
+router.get("/", (req, res) => {
+  Game.find({}, (error, allGames) => {
+    if (error) {
+      console.log("Error retrieving data " + error.message);
+    } else {
+      console.log(allGames);
+      res.render("./index.ejs", {
+        userDetails: req.session.currentUser,
+        allGames,
+      });
+    }
+  });
 });
 
 router.post("/", upload.single("myImg"), async (req, res, next) => {
@@ -48,7 +57,7 @@ router.post("/", upload.single("myImg"), async (req, res, next) => {
     name: req.body.name,
     title: req.body.title,
     desc: req.body.desc,
-    img: final_img,
+    myImg: final_img,
   };
 
   Game.create(obj, (err, Game) => {
@@ -82,14 +91,36 @@ router.delete("/:id", (req, res) => {
 
 router.get("/:id/edit", (req, res) => {
   Game.findById(req.params.id, (err, gameDets) => {
+    if (!gameDets) {
+      console.log("game not found");
+    }
     res.render("edit", { games: gameDets });
   });
 });
 
-router.put("/:id", (req, res) => {
-  Game.findByIdAndUpdate({ new: true }, (err, updatedGame) => {
-    res.redirect("/:id");
-  });
+router.put("/:id", upload.single("myImg"), (req, res) => {
+  //console.log(req.body);
+  let final_img = {
+    data: fs.readFileSync(
+      path.join(__dirname, "..", "/uploads/", req.file.filename)
+    ),
+    contentType: req.file.mimetype,
+  };
+  //   console.log(encode_img);
+  const obj = {
+    name: req.body.name,
+    title: req.body.title,
+    desc: req.body.desc,
+    myImg: final_img,
+  };
+  Game.findByIdAndUpdate(
+    req.params.id,
+    obj,
+    { new: true },
+    (err, updatedGame) => {
+      res.redirect("/");
+    }
+  );
 });
 
 module.exports = router;

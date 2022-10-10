@@ -4,7 +4,7 @@ const gameSchema = new mongoose.Schema({
   name: { type: String, required: true },
   title: { type: String, required: true },
   desc: { type: String, required: true },
-  img: {
+  myImg: {
     data: Buffer,
     contentType: String,
   },
