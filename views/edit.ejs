@@ -21,16 +21,30 @@
         autocomplete="on"
       >
         Game Name:
-        <input class="form-control" type="text" name="name" id="game name" />
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          id="game name"
+          value="<%=games.name%>"
+        />
         <br /><br />
 
         Title:
-        <input class="form-control" type="text" name="title" id="title" />
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          id="title"
+          value="<%=games.title%>"
+        />
         <br />
         <br />
 
         Description:
-        <textarea id="freeform" name="desc" rows="4" cols="180"> </textarea>
+        <textarea id="freeform" name="desc" rows="4" cols="180">
+<%=games.desc%>
+        </textarea>
 
         <br />
         <br />
