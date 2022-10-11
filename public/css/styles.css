@@ -7,6 +7,12 @@ body {
   margin-right: 50px;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 footer {
   background-color: black;
   color: white;
