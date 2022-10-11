@@ -8,11 +8,19 @@
     <%- include ('../partials/bootstrap.ejs') %> <%-
     include('../partials/gallery.ejs') %>
       <%- include ('../partials/head.ejs') %> 
+      <script src="https://cdn.tiny.cloud/1/flxpwqz1s7xc32ui9hszth1xscrmlua21a58yymnm8aegz7n/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+      
+      
   </head>
   <body>
     <h1>Add New Information To Directory</h1>
+    
 
       <form action="/" enctype="multipart/form-data" method="POST">
+
+        
+
         Game Name:
         <input class="form-control" type="text" name="name" id="game name" />
         <br /><br />
@@ -39,4 +47,12 @@
     </div>
     <a href="/">Cancel and return to home page</a>
   </body>
+
+  <!-- <script>
+
+    tinymce.init({        
+      selector: '#freeform',
+
+    });
+  </script> -->
 </html>

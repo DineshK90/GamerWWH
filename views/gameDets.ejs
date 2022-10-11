@@ -22,11 +22,9 @@
     />
     <% } %>
 
-    <p>
-      <br />
-      <% if(games) {%> <%= games.desc%> <% } %>
-    </p>
-
+    <br />
+    <br />
+    <p><% if(games) {%> <%= games.desc%> <% } %></p>
     <br />
 
     <%if(games){%><a href="/<%=games.id%>/edit">Edit Log</a><% } %> <br />

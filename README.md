@@ -2,6 +2,8 @@
 
 Gamer What Where and How.
 
+Access it at : https://gamerwwh.herokuapp.com/
+
 This is the second project under General Assembly, making a simple app deployment focusing on CRUD and Heroku.
 
 The idea for this app comes from an issue me and my friends have on our own "adventures" in a space exploration game. We would explore different planets and need somewhere to store our discovery so we can come back to it later. So I thought of having some sort of game databse where anyone can store simple guides/tips/tricks because lets face it, we have TONS of full guides out there.
